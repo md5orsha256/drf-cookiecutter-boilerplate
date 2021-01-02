@@ -1,1 +1,8 @@
+# Django (https://www.djangoproject.com)
 Django==3.1.4
+
+# Django REST framework (https://www.django-rest-framework.org)
+djangorestframework==3.12.2
+
+# Django-environ (https://github.com/joke2k/django-environ)
+django-environ==0.4.5
