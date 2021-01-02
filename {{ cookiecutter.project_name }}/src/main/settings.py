@@ -9,34 +9,50 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+import environ
+{% if cookiecutter.enable_sentry == "y" %}
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+{% endif %}
+
+from main.parameters import Environments
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+DJANGO_ENV = os.environ.get('DJANGO_ENV', 'dev')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+env = environ.Env()
+env.read_env(Path(BASE_DIR.parent, 'environments', f'{DJANGO_ENV}.env').__str__())
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x_64h2#4fbrk%4a25cn_$nv*l0j289k3%bzq$2kew5+apb*f6q'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+DEBUG = DJANGO_ENV != Environments.PROD.value
 
 ALLOWED_HOSTS = []
 
+{% if cookiecutter.enable_sentry == "y" %}
+SENTRY_DSN = env('SENTRY_DSN')
+sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
+{% endif %}
+
 
 # Application definition
-
 INSTALLED_APPS = [
+    # DEFAULT APPS
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # EXTERNAL LIBS
+    # Add third-party installed applications here
+
+    # DJANGO APPS
+    # Add your django apps here
 ]
 
 MIDDLEWARE = [
