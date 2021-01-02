@@ -1,0 +1,6 @@
+{
+  "project_name": "backend",
+  "project_title": "Django DRF Boilerplate",
+  "enable_sentry": "y",
+
+}
