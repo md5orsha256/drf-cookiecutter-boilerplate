@@ -12,11 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+{% if cookiecutter.enable_sentry == "y" %}import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration{% endif %}
 import environ
-{% if cookiecutter.enable_sentry == "y" %}
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-{% endif %}
 
 from main.parameters import Environments
 
