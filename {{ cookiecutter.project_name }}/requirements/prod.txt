@@ -1,0 +1,4 @@
+{% if cookiecutter.enable_sentry == "y" %}
+# Sentry (https://sentry.io)
+sentry-sdk==0.19.5
+{% endif %}
