@@ -1,4 +1,5 @@
 # Another [Django](https://www.djangoproject.com) + [DRF](https://www.django-rest-framework.org) [cookiecutter](https://github.com/cookiecutter/cookiecutter) boilerplate
+Some of the ideas were inspired by [this repository](https://github.com/CheesecakeLabs/django-drf-boilerplate).
 
 ## Versions
 Component | Version
@@ -26,3 +27,7 @@ During initialization, you will be prompted to override the following parameters
  * `project_name` - Project name (Will be used in the names of directories, readme, etc.)
  * `project_title` - Project title (Will be used in readme)
  * `enable_sentry` - (`y`/`n`) The parameter determines whether [sentry](https://sentry.io) will be used in the project
+
+
+
+Improvements required. The list can be found [here](TODO.md)
