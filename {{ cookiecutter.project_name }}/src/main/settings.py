@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 {% if cookiecutter.enable_sentry == "y" %}import sentry_sdk
@@ -52,6 +53,15 @@ INSTALLED_APPS = [
     # DJANGO APPS
     # Add your django apps here
 ]
+
+if DJANGO_ENV == Environments.TEST.value:
+    INSTALLED_APPS.append('django_nose')
+    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+    RUNNING_WITH_DEBUGGER = sys.gettrace() is not None
+    NOSE_ARGS = [
+        '--with-coverage',
+        '--cover-package='
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
