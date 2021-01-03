@@ -1,0 +1,8 @@
+# Black (https://github.com/psf/black)
+black==20.8b1
+
+# pre-commit (https://pre-commit.com)
+pre-commit==2.9.3
+
+# pylint (https://pylint.org)
+pylint==2.6.0
